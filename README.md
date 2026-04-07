@@ -10,7 +10,34 @@ An MCP server for LLM-driven spaced repetition learning. Plug it into any MCP-co
 4. After teaching or quizzing you, it calls `learn__record_review` with a quality score (0–5).
 5. SM-2 computes the next interval. Mastery reaches 1.0 after 5 consecutive successful reviews.
 
-## Installation
+## Quick setup with Moltis + Telegram
+
+To run Lersi inside [Moltis](https://moltis.org) (a self-hosted agent server) with Xiaomi MiMo as the LLM and Telegram as the chat channel:
+
+```bash
+./setup.sh        # first run creates a .env template
+# fill in .env with your MiMo API key, Telegram bot token, and user ID
+./setup.sh        # second run installs everything and writes moltis.toml
+moltis            # start the server → http://localhost:13131
+```
+
+`setup.sh` handles:
+- Installing Moltis via its one-liner install script
+- Building Lersi from source (`cargo build --release`)
+- Generating `~/.config/moltis/moltis.toml` with MiMo, Lersi MCP, and Telegram wired up
+
+### .env variables
+
+| Variable | Description |
+|----------|-------------|
+| `XIAOMI_MIMO_API_KEY` | API key from [platform.xiaomimimo.com](https://platform.xiaomimimo.com) |
+| `MIMO_MODEL` | Model to use — `mimo-v2-flash` (default) or `mimo-v2-pro` |
+| `TELEGRAM_BOT_TOKEN` | Bot token from [@BotFather](https://t.me/BotFather) |
+| `TELEGRAM_ALLOWED_USER` | Your Telegram user ID or username (get it from [@userinfobot](https://t.me/userinfobot)) |
+| `TELEGRAM_DM_POLICY` | `allowlist` (default), `open`, or `disabled` |
+| `LERSI_DB_PATH` | Override the default SQLite database path (optional) |
+
+## Manual installation
 
 ```bash
 cargo install --path .
