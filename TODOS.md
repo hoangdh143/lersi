@@ -134,4 +134,16 @@
 
 ## Completed
 
-*(nothing yet)*
+### SQLite internal_error handling ✓
+
+Implemented from scratch with `anyhow::Result` throughout `db.rs`. Every `rusqlite::Error` is
+wrapped with `.context()` and surfaced as `{"error":"internal_error","message":"..."}` JSON via
+`isError:true` MCP tool responses in `tools::call()`.
+
+---
+
+### Schema migration versioning ✓
+
+Implemented in `db::Database::run_migrations()`. `schema_version` table bootstrapped on first open.
+`MIGRATIONS: &[&str]` const array — append-only, never edit. Each entry runs once and bumps the
+version atomically. v1 (initial schema) is migration index 0.
