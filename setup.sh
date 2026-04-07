@@ -19,11 +19,11 @@ if [ ! -f "$ENV_FILE" ]; then
 # Lersi + Moltis setup — fill in all values before running setup.sh
 
 # ── Xiaomi MiMo API ──────────────────────────────────────────────────────────
-# Get your key from: https://platform.xiaomimimo.com/#/docs
-XIAOMI_MIMO_API_KEY=
+# Get your key from: https://platform.xiaomimimo.com/#/docs/quick-start/first-api-call
+MIMO_API_KEY=
 
-# MiMo model to use (mimo-v2-flash or mimo-v2-pro)
-MIMO_MODEL=mimo-v2-flash
+# MiMo model to use (mimo-v2-pro or mimo-v2-flash)
+MIMO_MODEL=mimo-v2-pro
 
 # ── Telegram ─────────────────────────────────────────────────────────────────
 # Create a bot with @BotFather on Telegram and paste the token here
@@ -75,11 +75,11 @@ check_var() {
   fi
 }
 
-check_var XIAOMI_MIMO_API_KEY "Xiaomi MiMo API key"
+check_var MIMO_API_KEY "Xiaomi MiMo API key"
 check_var TELEGRAM_BOT_TOKEN  "Telegram bot token"
 check_var TELEGRAM_ALLOWED_USER "Telegram allowed user"
 
-MIMO_MODEL="${MIMO_MODEL:-mimo-v2-flash}"
+MIMO_MODEL="${MIMO_MODEL:-mimo-v2-pro}"
 MOLTIS_PORT="${MOLTIS_PORT:-13131}"
 MOLTIS_BOT_NAME="${MOLTIS_BOT_NAME:-lersi-bot}"
 TELEGRAM_DM_POLICY="${TELEGRAM_DM_POLICY:-allowlist}"
@@ -142,8 +142,8 @@ offered = ["custom-mimo"]
 
 [providers.custom-mimo]
 enabled  = true
-api_key  = "${XIAOMI_MIMO_API_KEY}"
-base_url = "https://platform.xiaomimimo.com/v1"
+api_key  = "${MIMO_API_KEY}"
+base_url = "https://api.xiaomimimo.com/v1"
 models   = ["${MIMO_MODEL}"]
 
 [chat]

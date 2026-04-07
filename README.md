@@ -30,8 +30,8 @@ moltis            # start the server → http://localhost:13131
 
 | Variable | Description |
 |----------|-------------|
-| `XIAOMI_MIMO_API_KEY` | API key from [platform.xiaomimimo.com](https://platform.xiaomimimo.com) |
-| `MIMO_MODEL` | Model to use — `mimo-v2-flash` (default) or `mimo-v2-pro` |
+| `MIMO_API_KEY` | API key from [platform.xiaomimimo.com](https://platform.xiaomimimo.com/#/docs/quick-start/first-api-call) |
+| `MIMO_MODEL` | Model to use — `mimo-v2-pro` (default) or `mimo-v2-flash` |
 | `TELEGRAM_BOT_TOKEN` | Bot token from [@BotFather](https://t.me/BotFather) |
 | `TELEGRAM_ALLOWED_USER` | Your Telegram user ID or username (get it from [@userinfobot](https://t.me/userinfobot)) |
 | `TELEGRAM_DM_POLICY` | `allowlist` (default), `open`, or `disabled` |
