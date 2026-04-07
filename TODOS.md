@@ -116,6 +116,22 @@
 
 ---
 
+### learn__due_today tool
+
+**What:** `learn__due_today(topic?: str) -> Vec<ConceptSummary>` — returns all concepts where `next_review < now`, optionally filtered by topic. If `topic` is omitted, returns overdue across all topics.
+
+**Why:** The daily reminders TODO references `lersi due-today --notify`. Without a dedicated MCP tool, the cron job would need to parse `learn__status` output (which includes overdue as a sub-field). A dedicated tool gives a clean machine-readable output.
+
+**Pros:** Clean API surface. The cron/daemon feature can call this tool directly. AI client can proactively surface reviews at session start.
+
+**Cons:** `learn__status` already returns `overdue_reviews`. Adds one more tool to the surface.
+
+**Context:** `learn__status.overdue_reviews` already exists. This is an additive tool for the `daily review reminders` feature. Implement when that feature is built, not before.
+
+**Depends on / blocked by:** Daily review reminders (v2)
+
+---
+
 ## Completed
 
 *(nothing yet)*
