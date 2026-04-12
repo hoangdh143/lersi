@@ -18,12 +18,12 @@ if [ ! -f "$ENV_FILE" ]; then
   cat > "$ENV_FILE" <<'EOF'
 # Lersi + Moltis setup — fill in all values before running setup.sh
 
-# ── Xiaomi MiMo API ──────────────────────────────────────────────────────────
-# Get your key from: https://platform.xiaomimimo.com/#/docs/quick-start/first-api-call
-MIMO_API_KEY=
+# ── MiniMax API ───────────────────────────────────────────────────────────────
+# Get your key from: https://www.minimaxi.chat/user-center/basic-information/interface-key
+MINIMAX_API_KEY=
 
-# MiMo model to use (mimo-v2-pro or mimo-v2-flash)
-MIMO_MODEL=mimo-v2-pro
+# MiniMax model to use (MiniMax-M2.7, MiniMax-M2.7-highspeed, MiniMax-M2.5, etc.)
+MINIMAX_MODEL=MiniMax-M2.7
 
 # ── Telegram ─────────────────────────────────────────────────────────────────
 # Create a bot with @BotFather on Telegram and paste the token here
@@ -75,11 +75,11 @@ check_var() {
   fi
 }
 
-check_var MIMO_API_KEY "Xiaomi MiMo API key"
+check_var MINIMAX_API_KEY "MiniMax API key"
 check_var TELEGRAM_BOT_TOKEN  "Telegram bot token"
 check_var TELEGRAM_ALLOWED_USER "Telegram allowed user"
 
-MIMO_MODEL="${MIMO_MODEL:-mimo-v2-pro}"
+MINIMAX_MODEL="${MINIMAX_MODEL:-MiniMax-M2.7}"
 MOLTIS_PORT="${MOLTIS_PORT:-13131}"
 MOLTIS_BOT_NAME="${MOLTIS_BOT_NAME:-lersi-bot}"
 TELEGRAM_DM_POLICY="${TELEGRAM_DM_POLICY:-allowlist}"
@@ -135,19 +135,19 @@ cat > "$CONFIG_FILE" <<EOF
 [identity]
 name = "${MOLTIS_BOT_NAME}"
 
-# ── Provider: Xiaomi MiMo (OpenAI-compatible) ────────────────────────────────
+# ── Provider: MiniMax (OpenAI-compatible) ────────────────────────────────────
 
 [providers]
-offered = ["custom-mimo"]
+offered = ["custom-minimax"]
 
-[providers.custom-mimo]
+[providers.custom-minimax]
 enabled  = true
-api_key  = "${MIMO_API_KEY}"
-base_url = "https://api.xiaomimimo.com/v1"
-models   = ["${MIMO_MODEL}"]
+api_key  = "${MINIMAX_API_KEY}"
+base_url = "https://api.minimax.io/v1"
+models   = ["${MINIMAX_MODEL}"]
 
 [chat]
-priority_models = ["${MIMO_MODEL}"]
+priority_models = ["${MINIMAX_MODEL}"]
 
 # ── MCP: Lersi spaced-repetition server ─────────────────────────────────────
 
@@ -169,8 +169,8 @@ token          = "${TELEGRAM_BOT_TOKEN}"
 dm_policy      = "${TELEGRAM_DM_POLICY}"
 group_policy   = "${TELEGRAM_GROUP_POLICY}"
 allowlist      = ["${TELEGRAM_ALLOWED_USER}"]
-model          = "${MIMO_MODEL}"
-model_provider = "custom-mimo"
+model          = "${MINIMAX_MODEL}"
+model_provider = "custom-minimax"
 stream_mode    = "edit_in_place"
 reply_to_message = true
 

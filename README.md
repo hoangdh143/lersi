@@ -12,11 +12,11 @@ An MCP server for LLM-driven spaced repetition learning. Plug it into any MCP-co
 
 ## Quick setup with Moltis + Telegram
 
-To run Lersi inside [Moltis](https://moltis.org) (a self-hosted agent server) with Xiaomi MiMo as the LLM and Telegram as the chat channel:
+To run Lersi inside [Moltis](https://moltis.org) (a self-hosted agent server) with MiniMax as the LLM and Telegram as the chat channel:
 
 ```bash
 ./setup.sh        # first run creates a .env template
-# fill in .env with your MiMo API key, Telegram bot token, and user ID
+# fill in .env with your MiniMax API key, Telegram bot token, and user ID
 ./setup.sh        # second run installs everything and writes moltis.toml
 moltis            # start the server → http://localhost:13131
 ```
@@ -24,14 +24,14 @@ moltis            # start the server → http://localhost:13131
 `setup.sh` handles:
 - Installing Moltis via its one-liner install script
 - Building Lersi from source (`cargo build --release`)
-- Generating `~/.config/moltis/moltis.toml` with MiMo, Lersi MCP, and Telegram wired up
+- Generating `~/.config/moltis/moltis.toml` with MiniMax, Lersi MCP, and Telegram wired up
 
 ### .env variables
 
 | Variable | Description |
 |----------|-------------|
-| `MIMO_API_KEY` | API key from [platform.xiaomimimo.com](https://platform.xiaomimimo.com/#/docs/quick-start/first-api-call) |
-| `MIMO_MODEL` | Model to use — `mimo-v2-pro` (default) or `mimo-v2-flash` |
+| `MINIMAX_API_KEY` | API key from [platform.minimax.io](https://platform.minimax.io/user-center/basic-information/interface-key) |
+| `MINIMAX_MODEL` | Model to use — `MiniMax-M2.7` (default) or `MiniMax-M2.7-highspeed`, `MiniMax-M2.5`, etc. |
 | `TELEGRAM_BOT_TOKEN` | Bot token from [@BotFather](https://t.me/BotFather) |
 | `TELEGRAM_ALLOWED_USER` | Your Telegram user ID or username (get it from [@userinfobot](https://t.me/userinfobot)) |
 | `TELEGRAM_DM_POLICY` | `allowlist` (default), `open`, or `disabled` |
