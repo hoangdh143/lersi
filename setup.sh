@@ -148,6 +148,11 @@ models   = ["${MINIMAX_MODEL}"]
 
 [chat]
 priority_models = ["${MINIMAX_MODEL}"]
+system_prompt_suffix = """
+When calling the \`cron\` tool, always pass arguments wrapped in a \`job\` object key, e.g.:
+{"job": {"schedule": "0 9 * * *", "payload": "your message"}}.
+Never pass schedule/payload at the top level — the tool will reject it with "job must be an object".
+"""
 
 # ── MCP: Lersi spaced-repetition server ─────────────────────────────────────
 
